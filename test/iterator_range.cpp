@@ -28,11 +28,11 @@ int main()
     using namespace ranges;
     iterator_range<std::vector<int>::iterator> r0 {vi.begin(), vi.end()};
     ::models<SizedViewConcept>(aux::copy(r0));
-    CHECK(r0.size() == 4u);
+    CHECK(r0.size() == 4);
     CHECK(r0.begin() == vi.begin());
     CHECK(r0.end() == vi.end());
     ++r0.begin();
-    CHECK(r0.size() == 3u);
+    CHECK(r0.size() == 3);
 
     std::pair<std::vector<int>::iterator, std::vector<int>::iterator> p0 = r0;
     CHECK(p0.first == vi.begin()+1);
@@ -46,10 +46,10 @@ int main()
 
     ++r0.begin();
     CHECK(r0.begin() == vi.begin()+2);
-    CHECK(r0.size() == 2u);
+    CHECK(r0.size() == 2);
     --r0.end();
     CHECK(r0.end() == vi.end()-1);
-    CHECK(r0.size() == 1u);
+    CHECK(r0.size() == 1);
     CHECK(r0.front() == 3);
     CHECK(r0.back() == 3);
 
@@ -65,12 +65,6 @@ int main()
     CHECK(l0.begin() == li.begin());
     CHECK(l0.end() == li.end());
     CHECK(l0.size() == li.size());
-
-    l0 = view::all(li);
-
-    iterator_range<std::list<int>::iterator> l1 = l0;
-    CHECK(l1.begin() == li.begin());
-    CHECK(l1.end() == li.end());
 
     return ::test_result();
 }
